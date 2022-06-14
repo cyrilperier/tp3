@@ -31,24 +31,28 @@ public class RegisterTest {
     }
 
     @Test
-    private void verificationPrix_intervalleMaxEtMin_prixCorrecte(){
+    public void verificationPrix_IntervalleMaxEtMin_PrixCorrecte(){
 
         List<Item> grocery = new ArrayList<Item>();
-        grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
-        grocery.add(new Item(Upc.generateCode("22804918500"), "Beef", 0.5, 5.75));
-        // Oops, we remove the bananas
-        grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", -1, 1.5));
+
         grocery.add(new Item(Upc.generateCode("64748119599"), "Chewing gum", 2, 0.99));
-        grocery.add(new Item(Upc.generateCode("44348225996"), "Gobstoppers", 1, 0.99));
-        grocery.add(new Item(Upc.generateCode("34323432343"), "Nerds", 2, 1.44));
-        grocery.add(new Item(Upc.generateCode("54323432343"), "Doritos Club", 1, 0.5));
-        grocery.add(new Item(Upc.generateCode("61519314159"), "Doritos", 1, 1.25));
 
         // Print receipt
         System.out.println(register.print(grocery));
 
+    }
 
+    @Test
+    public void verificationPrix_PrixFractionaireAvecCUPCommencantParDeux_PrixCorrecte(){
+
+        List<Item> grocery = new ArrayList<Item>();
+
+        grocery.add(new Item(Upc.generateCode("22804918500"), "Beef", 0.5, 5.75));
+
+        // Print receipt
+        System.out.println(register.print(grocery));
 
     }
+
 
 }
