@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * Code : LAUR08069900, PERC12109605, FABC20539901
  * Classe d'équivalence :
  * ------------------------------------------------------------------------
- *Prix :
+ * Prix :
  * ------------------------------------------------------------------------
  * Valide                                       Non Valide
  * ------------------------------------------------------------------------
@@ -58,26 +58,26 @@ import static org.junit.Assert.*;
  * V14 : Val coupon < Prix tot                  i15 : valeur coupon > prix total
  * V15 : Val coupon > 0                         i16 : valeur coupon < 0
  *------------------------------------------------------------------------
- *TEST COMBINE:
+ * TESTS COMBINES:
  *
- *TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISE
- * 1        V1 ∩ V2 ∩ v16                                                                       PRIX CORRECT        GROUPE ET INTERVALLE
- * 2        V3                                      V10                                         PRIX CORRECT        SPECIFIQUE
- * 3                        V4 ∩ V5                                                             LIST VALIDE         INTERVALLE
- * 4                                                V6 ∩ V7                                     CUP VALIDE          SPECIFIQUE
- * 5                                                V8                                          CUP VALIDE
- * 6                                                V9 ∩ V10                                    CUP VALIDE          GROUPE
- * 7                                                           V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
- * 8                                                V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
- * 9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
- * 10       I3                                      I18                                         MSG ERREUR          GROUPE
- * 11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
- * 12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
- * 13                                               I8                                          MSG ERREUR          SPECIFIQUE
- * 14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
- * 15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
- * 16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
- * 17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
+ * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+ *  1        V1 ∩ V2 ∩ v16                                                                       PRIX CORRECT        GROUPE ET INTERVALLE
+ *  2        V3                                      V10                                         PRIX CORRECT        SPECIFIQUE
+ *  3                        V4 ∩ V5                                                             LIST VALIDE         INTERVALLE
+ *  4                                                V6 ∩ V7                                     CUP VALIDE          SPECIFIQUE
+ *  5                                                V8                                          CUP VALIDE
+ *  6                                                V9 ∩ V10                                    CUP VALIDE          GROUPE
+ *  7                                                           V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
+ *  8                                                V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
+ *  9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
+ *  10       I3                                      I18                                         MSG ERREUR          GROUPE
+ *  11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
+ *  12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
+ *  13                                               I8                                          MSG ERREUR          SPECIFIQUE
+ *  14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
+ *  15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
+ *  16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
+ *  17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
  */
 public class RegisterTest {
 
@@ -95,6 +95,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  1         V1 ∩ V2 ∩ v16                                                                       PRIX CORRECT        GROUPE ET INTERVALLE
+     */
     @Test
     public void un_VerificationPrix_IntervalleMaxEtMinPourUnarticleEtPrixTotalNonNegatif_PrixCorrecte(){
 
@@ -107,6 +111,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  2         V3                                      V10                                         PRIX CORRECT        SPECIFIQUE
+     */
     @Test
     public void deux_VerificationPrix_PrixFractionaireAvecCUPCommencantParDeux_PrixCorrecte(){
 
@@ -119,6 +127,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  3                         V4 ∩ V5                                                             LIST VALIDE         INTERVALLE
+     */
     @Test
     public void trois_VerificationList_BonNombreArticle_ListValide(){
 
@@ -131,6 +143,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  4                                                 V6 ∩ V7                                     CUP VALIDE          SPECIFIQUE
+     */
     @Test
     public void quatre_VerificationCUP_BonNombreDeCaractereEtDouziemeRespecteLaRegle_CUPValide(){
 
@@ -143,6 +159,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISE
+     *  5                                                 V8                                          CUP VALIDE
+     */
     @Test
     public void cinq_VerificationCUP_DeuxProduitAvecMemeCUPMaisUnQuantiteNegative_CUPValide(){
 
@@ -156,6 +176,10 @@ public class RegisterTest {
 
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISE
+     *  6                                                 V9 ∩ V10                                    CUP VALIDE          GROUPE
+     */
     @Test
     public void six_VerificationCUP_CupCommenceParLeBonChiffreParRapportAuProduit_CUPValide(){
 
@@ -168,8 +192,10 @@ public class RegisterTest {
 
     }
 
-
-
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  7                                                            V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
+     */
     @Test
     public void sept_ApplicationDeRabais_5Articles_PrixTotalSuperieurA2_RabaisValide() {
 
@@ -185,6 +211,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  8                                                 V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
+     */
     @Test
     public void huit_ApplicationDeCoupon_PrixCouponInferieurPrixTotalEtSuperieurAZero_CouponValide() {
         Item coupon = new Item("", "", 0, 0);
@@ -202,15 +232,23 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
+     */
     @Test(expected = AmountException.class)
     public void neuf_PrixArticle_prixInferieurAZero_AmountException() {
 
         List<Item> grocery = new ArrayList<Item>();
-        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, 0));
+        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, -1));
 
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  10       I3                                      I18                                         MSG ERREUR          GROUPE
+     */
     @Test(expected = InvalidQuantityException.class)
     public void dix_PrixFractionnaireArticle_prixNonValide_AmountException() {
 
@@ -220,6 +258,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
+     */
     @Test(expected = RegisterException.class)
     public void onze_ListeArticles_nombreArticlesNonValide_RegisterException() {
 
@@ -228,6 +270,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
+     */
     @Test(expected = InvalidUpcException.class)
     public void douze_ListeArticles_CUPInvalide_RegisterException() {
 
@@ -239,7 +285,7 @@ public class RegisterTest {
 
     /**
      * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
-     *  13                                               I8                                          MSG ERREUR          SPECIFIQUE
+     *  13                                                I8                                          MSG ERREUR          SPECIFIQUE
      */
     @Test(expected = InvalidUpcException.InvalidCheckDigitException.class)
     public void treize_CheckDigit_LastNumber_invalid() {
@@ -249,7 +295,7 @@ public class RegisterTest {
 
     /**
      * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
-     *  14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
+     *  14                                                I9 ∪ I14                                    MSG ERREUR          GROUPE
      */
     @Test(expected = Register.DuplicateItemException.class)
     public void quatorze_DeuxMemesCUP_QuantitePositive_Invalid() {
@@ -260,7 +306,7 @@ public class RegisterTest {
 
     /**
      * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
-     *  15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
+     *  15                                                                            I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
      */
     @Test()
     public void quinze_ValeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
@@ -273,7 +319,7 @@ public class RegisterTest {
 
     /**
      * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
-     *  16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
+     *  16                                                            V11 ∩ I11                       Pas de rabais       GROUPE
      */
     @Test()
     public void seize_VerifArticle_Sup5EtPrixInf2_PasDeRabais() {
@@ -287,7 +333,7 @@ public class RegisterTest {
 
     /**
      * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
-     *  17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
+     *  17                                                            V12 ∩ I10                       Pas de rabais       GROUPE
      */
     @Test()
     public void dix_sept_VerifArticle_Inf5EtPrixSup2_PasDeRabais() {
