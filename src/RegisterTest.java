@@ -74,7 +74,7 @@ public class RegisterTest {
 
 
     @Test
-    private void deuxMemeCUP_QuantitePositive_Invalid(){
+    public void deuxMemeCUP_QuantitePositive_Invalid(){
 
 
     }
