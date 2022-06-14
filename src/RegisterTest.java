@@ -95,10 +95,6 @@ public class RegisterTest {
 
     }
 
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void un_VerificationPrix_IntervalleMaxEtMinPourUnarticleEtPrixTotalNonNegatif_PrixCorrecte(){
 
@@ -173,20 +169,90 @@ public class RegisterTest {
     }
 
 
+
+    @Test
+    public void sept_ApplicationDeRabais_5Articles_PrixTotalSuperieurA2_RabaisValide() {
+
+        List<Item> grocery = new ArrayList<Item>();
+        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, 0.20));
+        grocery.add(new Item(Upc.generateCode("64748119599"), "Chewing gum", 2, 0.30));
+        grocery.add(new Item(Upc.generateCode("44348225996"), "Gobstoppers", 1, 0.40));
+        grocery.add(new Item(Upc.generateCode("34323432343"), "Nerds", 1, 0.35));
+        grocery.add(new Item(Upc.generateCode("61519314159"), "Doritos", 1, 1.25));
+
+        assertEquals(true,register.print(grocery).contains("Rebate for 5 items"));
+
+        System.out.println(register.print(grocery));
+    }
+
+    @Test
+    public void huit_ApplicationDeCoupon_PrixCouponInferieurPrixTotalEtSuperieurAZero_CouponValide() {
+        Item coupon = new Item("", "", 0, 0);
+
+        List<Item> grocery = new ArrayList<Item>();
+        grocery.add(new Item(Upc.generateCode("61519314159"), "Doritos", 1, 1.25));
+        grocery.add(new Item(Upc.generateCode("54323432343"), "Doritos Club", 1, 0.5));
+
+        for (Item item : grocery) {
+            if (item.getUpc().startsWith("5")) coupon = item;
+        }
+
+        assertEquals(true,register.print(grocery).contains("Coupon: " + coupon.getDescription()));
+
+        System.out.println(register.print(grocery));
+    }
+
+    @Test(expected = AmountException.class)
+    public void neuf_PrixArticle_prixInferieurAZero_AmountException() {
+
+        List<Item> grocery = new ArrayList<Item>();
+        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, 0));
+
+        System.out.println(register.print(grocery));
+    }
+
+    @Test(expected = InvalidQuantityException.class)
+    public void dix_PrixFractionnaireArticle_prixNonValide_AmountException() {
+
+        List<Item> grocery = new ArrayList<Item>();
+        grocery.add(new Item(Upc.generateCode("62804918500"), "Beef", 0.5, 5.75));
+
+        System.out.println(register.print(grocery));
+    }
+
+    @Test(expected = RegisterException.class)
+    public void onze_ListeArticles_nombreArticlesNonValide_RegisterException() {
+
+        List<Item> grocery = new ArrayList<Item>();
+
+        System.out.println(register.print(grocery));
+    }
+
+    @Test(expected = InvalidUpcException.class)
+    public void douze_ListeArticles_CUPInvalide_RegisterException() {
+
+        List<Item> grocery = new ArrayList<Item>();
+        grocery.add(new Item("12345678901", "Newspappers", 1, 0));
+
+        System.out.println(register.print(grocery));
+    }
+
+
+
     @Test(expected = InvalidUpcException.InvalidCheckDigitException.class)
-    public void treize_checkDigit_LastNumber_invalid() {
+    public void treize_CheckDigit_LastNumber_invalid() {
         grocery.add(new Item("036000291451", "Bananas", 1, 1.5));
         System.out.println(register.print(grocery));
     }
     @Test(expected = Register.DuplicateItemException.class)
-    public void quatorze_deuxMemeCUP_QuantitePositive_Invalid() {
+    public void quatorze_DeuxMemesCUP_QuantitePositive_Invalid() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
         System.out.println(register.print(grocery));
     }
 
     @Test()
-    public void quinze_valeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
+    public void quinze_ValeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 1.5));
         grocery.add(new Item(Upc.generateCode("54323432343"), "Rabais Fruits", 1, 3));
@@ -195,7 +261,7 @@ public class RegisterTest {
     }
 
     @Test()
-    public void seize_verifArticle_Sup5EtPrixInf2_PasDeRabais() {
+    public void seize_VerifArticle_Sup5EtPrixInf2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 0.2));
         grocery.add(new Item(Upc.generateCode("12345577901"), "Green-Apple", 1, 0.5));
@@ -205,7 +271,7 @@ public class RegisterTest {
     }
 
     @Test()
-    public void dix_sept_verifArticle_Inf5EtPrixSup2_PasDeRabais() {
+    public void dix_sept_VerifArticle_Inf5EtPrixSup2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 0.5));
         grocery.add(new Item(Upc.generateCode("12345577901"), "Green-Apple", 1, 0.5));
@@ -213,5 +279,8 @@ public class RegisterTest {
         Assert.assertFalse(register.print(grocery).contains("Rebate for 5 items  "));
     }
 
+    @After
+    public void tearDown() throws Exception {
+    }
 
 }
