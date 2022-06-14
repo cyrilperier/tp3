@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * Code : LAUR08069900, PERC12109605, FABC20539901
  * Classe d'équivalence :
  * ------------------------------------------------------------------------
- *Prix :
+ * Prix :
  * ------------------------------------------------------------------------
  * Valide                                       Non Valide
  * ------------------------------------------------------------------------
@@ -58,26 +58,26 @@ import static org.junit.Assert.*;
  * V14 : Val coupon < Prix tot                  i15 : valeur coupon > prix total
  * V15 : Val coupon > 0                         i16 : valeur coupon < 0
  *------------------------------------------------------------------------
- *TEST COMBINE:
+ * TESTS COMBINES:
  *
- *TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISE
- * 1        V1 ∩ V2 ∩ v16                                                                       PRIX CORRECT        GROUPE ET INTERVALLE
- * 2        V3                                      V10                                         PRIX CORRECT        SPECIFIQUE
- * 3                        V4 ∩ V5                                                             LIST VALIDE         INTERVALLE
- * 4                                                V6 ∩ V7                                     CUP VALIDE          SPECIFIQUE
- * 5                                                V8                                          CUP VALIDE
- * 6                                                V9 ∩ V10                                    CUP VALIDE          GROUPE
- * 7                                                           V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
- * 8                                                V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
- * 9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
- * 10       I3                                      I18                                         MSG ERREUR          GROUPE
- * 11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
- * 12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
- * 13                                               I8                                          MSG ERREUR          SPECIFIQUE
- * 14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
- * 15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
- * 16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
- * 17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
+ * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+ *  1        V1 ∩ V2 ∩ v16                                                                       PRIX CORRECT        GROUPE ET INTERVALLE
+ *  2        V3                                      V10                                         PRIX CORRECT        SPECIFIQUE
+ *  3                        V4 ∩ V5                                                             LIST VALIDE         INTERVALLE
+ *  4                                                V6 ∩ V7                                     CUP VALIDE          SPECIFIQUE
+ *  5                                                V8                                          CUP VALIDE
+ *  6                                                V9 ∩ V10                                    CUP VALIDE          GROUPE
+ *  7                                                           V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
+ *  8                                                V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
+ *  9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
+ *  10       I3                                      I18                                         MSG ERREUR          GROUPE
+ *  11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
+ *  12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
+ *  13                                               I8                                          MSG ERREUR          SPECIFIQUE
+ *  14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
+ *  15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
+ *  16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
+ *  17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
  */
 public class RegisterTest {
 
@@ -170,7 +170,7 @@ public class RegisterTest {
 
 /**
  * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
- * 7                                                            V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
+ *  7                                                            V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
  */
     @Test
     public void sept_ApplicationDeRabais_5Articles_PrixTotalSuperieurA2_RabaisValide() {
@@ -188,7 +188,7 @@ public class RegisterTest {
     }
 /**
  * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
- * 8                                                 V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
+ *  8                                                 V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
  */
     @Test
     public void huit_ApplicationDeCoupon_PrixCouponInferieurPrixTotalEtSuperieurAZero_CouponValide() {
