@@ -168,8 +168,10 @@ public class RegisterTest {
 
     }
 
-
-
+/**
+ * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+ * 7                                                            V11 ∩ V12                        RABAIS VALIDE       GROUPE ET INTERVALLE
+ */
     @Test
     public void sept_ApplicationDeRabais_5Articles_PrixTotalSuperieurA2_RabaisValide() {
 
@@ -184,7 +186,10 @@ public class RegisterTest {
 
         System.out.println(register.print(grocery));
     }
-
+/**
+ * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+ * 8                                                 V9                          V13 ∩ V14 ∩ V15 COUPON VALIDE       GROUPE
+ */
     @Test
     public void huit_ApplicationDeCoupon_PrixCouponInferieurPrixTotalEtSuperieurAZero_CouponValide() {
         Item coupon = new Item("", "", 0, 0);
@@ -202,15 +207,23 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  9        I1 ∪ I2                                                                             MSG ERREUR          GROUPE
+     */
     @Test(expected = AmountException.class)
     public void neuf_PrixArticle_prixInferieurAZero_AmountException() {
 
         List<Item> grocery = new ArrayList<Item>();
-        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, 0));
+        grocery.add(new Item(Upc.generateCode("12345678901"), "Newspappers", 1, -1));
 
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  10       I3                                      I18                                         MSG ERREUR          GROUPE
+     */
     @Test(expected = InvalidQuantityException.class)
     public void dix_PrixFractionnaireArticle_prixNonValide_AmountException() {
 
@@ -220,6 +233,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  11                       I4 ∪ I5                                                             MSG ERREUR          INTERVALLE
+     */
     @Test(expected = RegisterException.class)
     public void onze_ListeArticles_nombreArticlesNonValide_RegisterException() {
 
@@ -228,6 +245,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
+     */
     @Test(expected = InvalidUpcException.class)
     public void douze_ListeArticles_CUPInvalide_RegisterException() {
 
