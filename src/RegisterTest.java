@@ -75,9 +75,9 @@ import static org.junit.Assert.*;
  * 12                                               I6 ∪ I7                                     MSG ERREUR          INTERVALLE
  * 13                                               I8                                          MSG ERREUR          SPECIFIQUE
  * 14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
- * 15                                                                           I15 ∪ I16       MSG ERREUR          GROUPE ET INTERVALLE
- * 16                                                           V11 ∩ I11                       MSG ERREUR          GROUPE
- * 17                                                           V12 ∩ I10                       MSG ERREUR          GROUPE
+ * 15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
+ * 16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
+ * 17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
  */
 public class RegisterTest {
 
@@ -237,13 +237,20 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
-
-
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  13                                               I8                                          MSG ERREUR          SPECIFIQUE
+     */
     @Test(expected = InvalidUpcException.InvalidCheckDigitException.class)
     public void treize_CheckDigit_LastNumber_invalid() {
         grocery.add(new Item("036000291451", "Bananas", 1, 1.5));
         System.out.println(register.print(grocery));
     }
+
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  14                                               I9 ∪ I14                                    MSG ERREUR          GROUPE
+     */
     @Test(expected = Register.DuplicateItemException.class)
     public void quatorze_DeuxMemesCUP_QuantitePositive_Invalid() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
@@ -251,6 +258,10 @@ public class RegisterTest {
         System.out.println(register.print(grocery));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  15                                                                           I15 ∪ I16       Coupon suivant      GROUPE ET INTERVALLE
+     */
     @Test()
     public void quinze_ValeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
@@ -260,6 +271,10 @@ public class RegisterTest {
         Assert.assertTrue(register.print(grocery).contains("Rabais 1$"));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  16                                                           V11 ∩ I11                       Pas de rabais       GROUPE
+     */
     @Test()
     public void seize_VerifArticle_Sup5EtPrixInf2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
@@ -270,6 +285,10 @@ public class RegisterTest {
         Assert.assertFalse(register.print(grocery).contains("Rebate for 5 items  "));
     }
 
+    /**
+     * TEST      PRIX            LISTE DE PRODUIT        CUP         RABAIS          COUPON          RÉSULTAT            HEURISTIQUE UTILISEE
+     *  17                                                           V12 ∩ I10                       Pas de rabais       GROUPE
+     */
     @Test()
     public void dix_sept_VerifArticle_Inf5EtPrixSup2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
