@@ -266,9 +266,9 @@ public class RegisterTest {
     public void quinze_ValeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 1.5));
-        grocery.add(new Item(Upc.generateCode("54323432343"), "Rabais Fruits", 1, 3));
-        grocery.add(new Item(Upc.generateCode("54323432443"), "Rabais 1$", 1, 2));
-        Assert.assertTrue(register.print(grocery).contains("Rabais 1$"));
+        grocery.add(new Item(Upc.generateCode("54323432343"), "Coupon Fruits", 1, 3));
+        grocery.add(new Item(Upc.generateCode("54323432443"), "Coupon 1$", 1, 2));
+        Assert.assertTrue(register.print(grocery).contains("Coupon 1$"));
     }
 
     /**
