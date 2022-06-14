@@ -71,19 +71,19 @@ public class RegisterTest {
 
 
     @Test(expected = InvalidUpcException.InvalidCheckDigitException.class)
-    public void quatorze_checkDigit_LastNumber_invalid() {
+    public void treize_checkDigit_LastNumber_invalid() {
         grocery.add(new Item("036000291451", "Bananas", 1, 1.5));
         System.out.println(register.print(grocery));
     }
     @Test(expected = Register.DuplicateItemException.class)
-    public void quinze_deuxMemeCUP_QuantitePositive_Invalid() {
+    public void quatorze_deuxMemeCUP_QuantitePositive_Invalid() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 1, 1.5));
         System.out.println(register.print(grocery));
     }
 
     @Test()
-    public void seize_valeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
+    public void quinze_valeurCoupon_SuperieurPrixTotOuInf0_DeuxiemeCoupon() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 1.5));
         grocery.add(new Item(Upc.generateCode("54323432343"), "Rabais Fruits", 1, 3));
@@ -92,7 +92,7 @@ public class RegisterTest {
     }
 
     @Test()
-    public void dix_sept_verifArticle_Sup5EtPrixInf2_PasDeRabais() {
+    public void seize_verifArticle_Sup5EtPrixInf2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 0.2));
         grocery.add(new Item(Upc.generateCode("12345577901"), "Green-Apple", 1, 0.5));
@@ -102,7 +102,7 @@ public class RegisterTest {
     }
 
     @Test()
-    public void dix_huit_verifArticle_Inf5EtPrixSup2_PasDeRabais() {
+    public void dix_sept_verifArticle_Inf5EtPrixSup2_PasDeRabais() {
         grocery.add(new Item(Upc.generateCode("12345678901"), "Bananas", 2, 0.5));
         grocery.add(new Item(Upc.generateCode("12345677901"), "Apple", 1, 0.5));
         grocery.add(new Item(Upc.generateCode("12345577901"), "Green-Apple", 1, 0.5));
