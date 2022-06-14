@@ -42,6 +42,7 @@ public class RegisterDemo
         //Register r = new Register();
 
         // Put the small roll of paper into the register
+        register.changePaper(PaperRoll.SMALL_ROLL);
         register.changePaper(PaperRoll.LARGE_ROLL);
 
         /* Create a list of items */
